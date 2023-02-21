@@ -1,20 +1,18 @@
-
-
-$(document).ready(function() {
-  function TESOURODIRETO(bondName, key = "untrRedVal") {
+$(document).ready(function () {
+  async function tesouroSearch(bondName, key = "untrRedVal") {
     let srcURL =
       "http://localhost:3000/tesourodireto";
     fetch(srcURL)
       .then((response) => response.json())
       .then((jsondata) => {
         let parsedData = jsondata.response;
-  
+
         for (let bond of parsedData.TrsrBdTradgList) {
           let currBondName = bond.TrsrBd.nm;
           if (currBondName.toLowerCase() === bondName.toLowerCase()) {
             if (bond.TrsrBd.hasOwnProperty(key)) {
               console.log(bond.TrsrBd[key]);
-              return; 
+              return;
             } else {
               throw new Error("Chave não encontrada nos dados do título.");
             }
@@ -24,6 +22,16 @@ $(document).ready(function() {
       })
       .catch((error) => console.error(error));
   }
-  
-  TESOURODIRETO("Tesouro Renda+ Aposentadoria Extra 2060", "untrInvstmtVal");
+
+  async function tesouroData() {
+    let srcURL = "http://localhost:3000/tesourodireto";
+    try {
+      let response = await fetch(srcURL);
+      let jsondata = await response.json();
+      return jsondata.response.TrsrBdTradgList;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
+  }
 });
