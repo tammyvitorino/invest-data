@@ -37,12 +37,15 @@ $(document).ready(function () {
 
   async function displayBonds() {
     let bondsList = await tesouroData();
-    let bondsDiv = document.getElementById("bondsList");
+    let bondsDiv = document.getElementById("tesouroDiretoList");
 
     bondsDiv.innerHTML = '';
 
+    console.log(bondsList);
+
     for (let bond of bondsList) {
-      let p = document.createElement("p");
+      let p = document.createElement("div");
+      p.classList.add("tesouroDiretoItem");
       p.textContent = bond.TrsrBd.nm;
       bondsDiv.appendChild(p);
     }
