@@ -11,7 +11,8 @@ h1 {
 
 #header {
   align-items: center;
-  background-color: #15306A;
+  // background-color: #15306A;
+  background-image: url(../assets/B3-content-top-banner.jpg);
   color: #ffffff;
   display: flex;
   height: 250px;
@@ -21,13 +22,29 @@ h1 {
 #tesouroDiretoList {
   display: flex;
   flex-wrap: wrap;
+  gap: 16px;
+  margin: 0 auto;
+  max-width: 1156px;
   padding: 16px;
+
+  @media screen and (min-width: 768px) {
+    gap: 24px;
+    padding: 48px;
+  }
+
 
   .tesouroDiretoItem {
     background-color: #15306A;
     color: #ffffff;
     flex-basis: 100%;
-    margin: 16px 0;
     padding: 16px;
+
+    @media screen and (min-width : 768px) {
+      flex-basis: calc((100% - 24px) / 2);
+    }
+
+    @media screen and (min-width : 1024px) {
+      flex-basis: calc((100% - 72px) / 4 );
+    }
   }
 }
