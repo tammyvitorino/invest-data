@@ -34,4 +34,19 @@ $(document).ready(function () {
       return [];
     }
   }
+
+  async function displayBonds() {
+    let bondsList = await tesouroData();
+    let bondsDiv = document.getElementById("bondsList");
+
+    bondsDiv.innerHTML = '';
+
+    for (let bond of bondsList) {
+      let p = document.createElement("p");
+      p.textContent = bond.TrsrBd.nm;
+      bondsDiv.appendChild(p);
+    }
+  }
+
+  displayBonds();
 });
